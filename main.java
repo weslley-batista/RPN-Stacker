@@ -1,4 +1,7 @@
 import java.util.Scanner;
+
+
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,9 +14,11 @@ public class main {
         //lista de operadores basicos
         String [] operadores = new String[] {"+", "-", "*", "/"};
         List<String> operador = Arrays.asList(operadores);
+        String ArquivoValue = funcao.lerArquivo("./Calc1.stk");
 
         while(true){
             String entrada = scan.nextLine();
+
 
             if(operador.contains(entrada)) {
                 

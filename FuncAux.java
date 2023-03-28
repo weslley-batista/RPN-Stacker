@@ -1,4 +1,9 @@
 import javafx.beans.binding.ObjectExpression;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javax.swing.JOptionPane;
 
 public class FuncAux {
     //logica de calculo
@@ -25,4 +30,18 @@ public class FuncAux {
         }
         return resultado;
     }
+
+    public String lerArquivo( String diretorio ) {
+        Path caminho = Paths.get(diretorio);
+        try{
+
+            byte[] texto = Files.readAllBytes(caminho);
+            String arquivo = new String(texto);
+            return arquivo;
+
+        } catch ( Exception error) {
+            return "erro";
+        }
+    }
+
 }
