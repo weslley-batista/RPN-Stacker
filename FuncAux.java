@@ -1,10 +1,9 @@
 import javafx.beans.binding.ObjectExpression;
 
 public class FuncAux {
-
+    //logica de calculo
     public Object calcular( int op1, int op2, String entrada ) {
 
-        System.out.println("Entrou na função calcular");
         int resultado = -1 ;
         int operador1 = op1;
         int operador2 = op2;
