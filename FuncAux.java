@@ -1,12 +1,13 @@
+import javafx.beans.binding.ObjectExpression;
+
 public class FuncAux {
 
-    public int calcular( String op1, String op2, String entrada ) {
+    public Object calcular( int op1, int op2, String entrada ) {
 
         System.out.println("Entrou na função calcular");
         int resultado = -1 ;
-        int operador1 = Integer.parseInt(op1);
-        int operador2 = Integer.parseInt(op2);
-
+        int operador1 = op1;
+        int operador2 = op2;
 
         switch (entrada) {
             case "+":

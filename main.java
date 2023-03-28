@@ -16,18 +16,24 @@ public class main {
         while(lendo){
             String entrada = scan.nextLine();
 
-
             if(operador.contains(entrada)) {
                 
                 System.out.println("entrou no if");
 
-                String op1 = (String) p.desempilhar();
-                String op2 = (String) p.desempilhar();
-                
-                System.out.println( funcao.calcular(op1, op2, entrada) );
+                Object op1 = p.desempilhar();
+                Object op2 = p.desempilhar();
+
+                int operador1 = Integer.parseInt(op1.toString());
+                int operador2 = Integer.parseInt(op2.toString());
+
+                int resultadoCalculado = Integer.parseInt(funcao.calcular(operador1, operador2, entrada).toString());
+                p.empilhar(resultadoCalculado);
+
+                System.out.println("Resultado: " + p.exibeUltimoValor());
             } else {
-                p.empilhar(entrada);
-                System.out.println("emplilhado " + entrada);
+                int valor = Integer.parseInt(entrada);
+                p.empilhar(valor);
+                System.out.println("emplilhado " + valor);
 
             }
         }
