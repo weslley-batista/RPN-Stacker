@@ -27,13 +27,13 @@ public class main {
                     int resultadoCalculado = Integer.parseInt(funcao.calcular(operador1, operador2, entrada).toString());
                     p.empilhar(resultadoCalculado);
     
-                    System.out.println("Resultado: " + p.exibeUltimoValor());
                 } else {
                     // sempre empilhar valor tipo int
                     int valor = Integer.parseInt(entrada);
                     p.empilhar(valor);
                 }
             }
+            System.out.println("Resultado: " + p.exibeUltimoValor());
         } catch (IOException e) {
             System.out.println("Erro ao ler arquivo: " + e.getMessage());
         }
