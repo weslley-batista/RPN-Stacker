@@ -7,6 +7,14 @@ import java.io.IOException;
 
 public class main {
     public static void main(String args[]) {
+        enum TokenType {
+            // Literals.
+            NUM,
+            // Single-character tokens for operations.
+            MINUS, PLUS, SLASH, STAR,
+            EOF
+        }
+
         Pilha p = new Pilha();
         FuncAux funcao = new FuncAux();
 
@@ -14,15 +22,31 @@ public class main {
         String [] operadores = new String[] {"+", "-", "*", "/"};
         List<String> operador = Arrays.asList(operadores);
         File arquivo = new File("./Calc1.stk");
+        List<Token> tokens = new ArrayList<>();
 
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String entrada;
             while ((entrada = leitor.readLine()) != null) {
-                if(operador.contains(entrada)) {
+                Token token;
                 
+                if(operador.contains(entrada)) {
                     int operador1 = Integer.parseInt(p.desempilhar().toString());
                     int operador2 = Integer.parseInt(p.desempilhar().toString());
 
+                    if (entrada.equals("+")) {
+                        token = new Token(TokenType.PLUS, entrada);
+                        tokens.add(token);
+                    } else if (entrada.equals("-")) {
+                        token = new Token(TokenType.MINUS, entrada);
+                        tokens.add(token);
+                    } else if (entrada.equals("/")) {
+                        token = new Token(TokenType.SLASH, entrada);
+                        tokens.add(token);
+                    } else if (entrada.equals("*")) {
+                        token = new Token(TokenType.STAR, entrada);
+                        tokens.add(token);
+                    }
+                    
                     // calcular e transformar o resultadado para int
                     int resultadoCalculado = Integer.parseInt(funcao.calcular(operador1, operador2, entrada).toString());
                     p.empilhar(resultadoCalculado);
@@ -31,11 +55,21 @@ public class main {
                     // sempre empilhar valor tipo int
                     int valor = Integer.parseInt(entrada);
                     p.empilhar(valor);
+                    token = new Token(TokenType.NUM, entrada);
+                    tokens.add(token);
                 }
             }
+
+            for (int i = 0; i < tokens.size(); i++) {
+                String elemento = tokens.get(i);
+                System.out.println(elemento);
+            }
+            
+            System.out.println("-----");
+            
             System.out.println("Resultado: " + p.exibeUltimoValor());
         } catch (IOException e) {
-            System.out.println("Erro ao ler arquivo: " + e.getMessage());
+            System.out.println("Erro ao ler arquivo: " + e.getMessage());            
         }
     }
 }
