@@ -17,7 +17,6 @@ public class main {
         String [] operadores = new String[] {"+", "-", "*", "/"};
         List<String> operador = Arrays.asList(operadores);
         File arquivo = new File("./Calc1.stk");
-        // List<String> tokens = Arrays.asList();
         ArrayList<String> tokens = new ArrayList<>();
 
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
@@ -28,7 +27,6 @@ public class main {
                 if(operador.contains(entrada)) {
                     int operador1 = Integer.parseInt(p.desempilhar().toString());
                     int operador2 = Integer.parseInt(p.desempilhar().toString());
-                    System.out.println("entrou operador");
 
                     if (entrada.equals("+")) {
                         token = new Token(TokenType.PLUS, entrada);
@@ -50,10 +48,8 @@ public class main {
     
                 } else {
                     // sempre empilhar valor tipo int
-
                     int valor = Integer.parseInt(entrada);
                     p.empilhar(valor);
-                    System.out.println("entrou numero1");
 
                     token = new Token(TokenType.NUM, entrada);
                     tokens.add(token.toString());
