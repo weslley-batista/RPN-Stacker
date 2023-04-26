@@ -6,15 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class main {
+    /**
+     * @param args
+     */
     public static void main(String args[]) {
-        enum TokenType {
-            // Literals.
-            NUM,
-            // Single-character tokens for operations.
-            MINUS, PLUS, SLASH, STAR,
-            EOF
-        }
-
         Pilha p = new Pilha();
         FuncAux funcao = new FuncAux();
 
@@ -22,7 +17,8 @@ public class main {
         String [] operadores = new String[] {"+", "-", "*", "/"};
         List<String> operador = Arrays.asList(operadores);
         File arquivo = new File("./Calc1.stk");
-        List<Token> tokens = new ArrayList<>();
+        // List<String> tokens = Arrays.asList();
+        ArrayList<String> tokens = new ArrayList<>();
 
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String entrada;
@@ -32,19 +28,20 @@ public class main {
                 if(operador.contains(entrada)) {
                     int operador1 = Integer.parseInt(p.desempilhar().toString());
                     int operador2 = Integer.parseInt(p.desempilhar().toString());
+                    System.out.println("entrou operador");
 
                     if (entrada.equals("+")) {
                         token = new Token(TokenType.PLUS, entrada);
-                        tokens.add(token);
+                        tokens.add(token.toString());
                     } else if (entrada.equals("-")) {
                         token = new Token(TokenType.MINUS, entrada);
-                        tokens.add(token);
+                        tokens.add(token.toString());
                     } else if (entrada.equals("/")) {
                         token = new Token(TokenType.SLASH, entrada);
-                        tokens.add(token);
+                        tokens.add(token.toString());
                     } else if (entrada.equals("*")) {
                         token = new Token(TokenType.STAR, entrada);
-                        tokens.add(token);
+                        tokens.add(token.toString());
                     }
                     
                     // calcular e transformar o resultadado para int
@@ -53,10 +50,13 @@ public class main {
     
                 } else {
                     // sempre empilhar valor tipo int
+
                     int valor = Integer.parseInt(entrada);
                     p.empilhar(valor);
+                    System.out.println("entrou numero1");
+
                     token = new Token(TokenType.NUM, entrada);
-                    tokens.add(token);
+                    tokens.add(token.toString());
                 }
             }
 
