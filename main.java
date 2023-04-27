@@ -78,6 +78,6 @@ public class main {
 
                 System.out.println("Saida: " + p.exibeUltimoValor());
             }
-        } catch (IOException e) {}
+        } catch (IOException e) {} 
     }
 }
